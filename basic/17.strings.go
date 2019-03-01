@@ -14,6 +14,10 @@ func foo_concat() {
 }
 
 func main() {
+
+        fmt.Println("This is a demo string.")
+        fmt.Println(`This is a demo string.`)
+
         foo_strlen()
         foo_concat()
 }
