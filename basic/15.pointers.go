@@ -2,13 +2,26 @@ package main
 
 import "fmt"
 
-func main() {
-        var i int = 1234;
-        var p *int
+func pint(pi *int) {
+        fmt.Printf("ptr: %p, val: %d\n", pi, *pi)
+}
 
-        fmt.Printf("ptr: %p\n", p)  /* nil pointer */
-        p = &i
-        fmt.Printf("ptr: %p, val: %d\n", p, *p)
+func main() {
+        var i int = 1234
+
+        pint(&i)
+
+        /* Another way to get a pointer is to use the built-in new function */
+        p := new(int) /* nil pointer */
+        *p = 1111
+        pint(p)
+
+        /* In some programming languages there is a significant different
+           between using new and &, with great care being needed to eventally
+           delete anything created with new.
+           Go is not like this, it's garbage collected programming language
+           which means memory is cleaned up automatically when nothing refers
+           to it anymore. */
 }
 
 /*
