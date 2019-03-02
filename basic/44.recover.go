@@ -3,14 +3,14 @@ package main
 import "fmt"
 
 func panic_recover() {
-        str := recover()
-        fmt.Println(str)
+	str := recover()
+	fmt.Println(str)
 }
 
 func main() {
-        defer panic_recover()
-        panic("PANIC")
-        fmt.Println("after panic recover") /* never printed */
+	defer panic_recover()
+	panic("PANIC")
+	fmt.Println("after panic recover") /* never printed */
 }
 
 /* Earlier we created a function that called the panic function to cause a
@@ -20,7 +20,7 @@ func main() {
 
 /*
 
-$ go run recover.go 
+$ go run recover.go
 PANIC
 
 */

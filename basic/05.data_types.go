@@ -1,21 +1,18 @@
 package main
 
-
 import "fmt"
 
-
 func main() {
-        var my_str string  /* Static Type Declaration */
-        var i, j int
+	var my_str string /* Static Type Declaration */
+	var i, j int
 
-        my_str = "Hello, Go"
-        fmt.Println(my_str)
+	my_str = "Hello, Go"
+	fmt.Println(my_str)
 
-        i, j = 2, 3        /* Mixed Variable Declaration */
-        my_int := i * j    /* Dynamic Type Declaration */
-        fmt.Println(my_int)
+	i, j = 2, 3     /* Mixed Variable Declaration */
+	my_int := i * j /* Dynamic Type Declaration */
+	fmt.Println(my_int)
 }
-
 
 /*
  * Boolean types: true, false
@@ -29,10 +26,10 @@ func main() {
  *                uint (32 or 64 bits)
  *                int  (same size as uint)
  *                uintptr (an unsigned integer pointer)
- * String types: 
+ * String types:
  * Derived types: Pointer, Array, Structure, Union, Function,
                   Slice, Inteface, Map, Channel
- */
+*/
 
 /*
  * Variable Definition in Go
@@ -62,5 +59,4 @@ func main() {
  *
  */
 
- /* https://gobyexample.com/variables */
- 
+/* https://gobyexample.com/variables */

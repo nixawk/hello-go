@@ -14,7 +14,7 @@ func foo_for() {
 	for true {
 		fmt.Printf("[*] enter a int: ")
 		fmt.Scanf("%d", &i)
-		if (i > 0) {
+		if i > 0 {
 			break
 		} else {
 			fmt.Println("[!] please a positive number")
@@ -25,14 +25,10 @@ func foo_for() {
 		fmt.Printf("i = %d\n", i)
 	}
 
-
 }
 
 func main() {
 	foo_for()
 }
-
-
-
 
 /* https://www.tutorialspoint.com/go/go_for_loop.htm */

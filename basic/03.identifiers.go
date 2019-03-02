@@ -3,13 +3,13 @@ package main
 import "fmt"
 
 func main() {
-        var my_str = "Hello World1"
-        var my_Str = "Hello World2"
-        var my_int = 2018
+	var my_str = "Hello World1"
+	var my_Str = "Hello World2"
+	var my_int = 2018
 
-        fmt.Println(my_str)  /* output: Hello World1 */
-        fmt.Println(my_Str)  /* output: Hello World2 */
-        fmt.Println(my_int)  /* output: 2018 */
+	fmt.Println(my_str) /* output: Hello World1 */
+	fmt.Println(my_Str) /* output: Hello World2 */
+	fmt.Println(my_int) /* output: 2018 */
 }
 
 /*

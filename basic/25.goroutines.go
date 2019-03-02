@@ -1,24 +1,23 @@
 package main
 
 import "fmt"
-
+import "time"
+import "math/rand"
 
 func f(from string) {
-        for i := 0; i < 4; i++ {
-                fmt.Println(from, ":", i)
-        }
+	for i := 0; i < 4; i++ {
+		fmt.Println(from, ":", i)
+		amt := time.Duration(rand.Intn(1000))
+		time.Sleep(time.Millisecond * amt)
+	}
 }
 
 func main() {
-        f("sync")
-
-        go f("goroutine")
-        go func(msg string) {
-                fmt.Println(msg)
-        }("going")
-
-        fmt.Scanln()
-        fmt.Println("done")
+	for i := 0; i < 3; i++ {
+		go f(fmt.Sprintf("gr%d", i))
+	}
+	var input string
+	fmt.Scanln(&input)
 }
 
 /* A goroutine is a lightweight thread of execution */

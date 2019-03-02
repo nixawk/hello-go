@@ -12,20 +12,20 @@ func function_name( [parameter list] ) [return_types]
 /* Functions are also known as method, sub-routine, or procedure */
 
 func add(x, y int) int {
-        var z int
+	var z int
 
-        z = x + y
-        fmt.Printf("x + y = %d\n", z)
-        return z
+	z = x + y
+	fmt.Printf("x + y = %d\n", z)
+	return z
 }
 
 func foo() (string, string) {
-        return "Go", "Python"
+	return "Go", "Python"
 }
 
 func main() {
-        add(1, 2)
+	add(1, 2)
 
-        s1, s2 := foo()
-        fmt.Printf("%s VS %s\n", s1, s2)
+	s1, s2 := foo()
+	fmt.Printf("%s VS %s\n", s1, s2)
 }

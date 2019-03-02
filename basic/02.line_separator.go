@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-        fmt.Println("Hello, World !")
-        fmt.Println("Learning go !")
+	fmt.Println("Hello, World !")
+	fmt.Println("Learning go !")
 }
 
 /*

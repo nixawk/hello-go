@@ -2,9 +2,8 @@ package main
 
 import "fmt"
 
-
 func main() {
-        fmt.Println("Hello, World !");
+	fmt.Println("Hello, World !")
 }
 
 /* go run hello.go */
@@ -28,6 +27,6 @@ func main() {
     -rw-r--r-- 1 debug debug 38408 12月 15 07:36 scan_test.go
     -rw-r--r-- 1 debug debug  2156 12月 15 07:36 stringer_test.go
 
- */
+*/
 
 /* https://gobyexample.com/hello-world */

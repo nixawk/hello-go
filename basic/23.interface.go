@@ -7,37 +7,37 @@ import "fmt"
    defines a "method set" */
 
 type Inter interface {
-        get_name() string
+	get_name() string
 }
 
 type Person struct {
-        name string
-        age  int
+	name string
+	age  int
 }
 
 type Fruit struct {
-        name string
-        loc  string
+	name string
+	loc  string
 }
 
 func (p Person) get_name() string {
-        return p.name
+	return p.name
 }
 
 func (f Fruit) get_name() string {
-        return f.name
+	return f.name
 }
 
 func print_name(i Inter) {
-        fmt.Printf("my name is %s\n", i.get_name())
+	fmt.Printf("my name is %s\n", i.get_name())
 }
 
 func main() {
-        p := Person{name: "mutai", age: 25}
-        f := Fruit{name: "peach", loc: "jp"}
+	p := Person{name: "mutai", age: 25}
+	f := Fruit{name: "peach", loc: "jp"}
 
-        print_name(p)
-        print_name(f)
+	print_name(p)
+	print_name(f)
 }
 
 /*
