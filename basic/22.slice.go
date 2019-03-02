@@ -3,26 +3,38 @@ package main
 import "fmt"
 
 func main() {
-        var numbers []int            /* a slice of unspecified size */
 
-        fmt.Printf("cap=%d, slice=%v\n", cap(numbers), numbers) /* slice default, nil */
+        /* A slice is a segment of an array.
+           Like arrays slices are indexable and have a length.
+           Unlike arrays this length is allowed to change. */
 
-        numbers = make([]int, 5, 5)  /* a slice of length 5 and capacity 5 */
+        /* make */
+        s1 := make([]int, 5)    /* 5 is the length of slice */
+        s2 := make([]int, 5, 8) /* 8 is the capacity of the underlying array */
 
-        for i := 0; i < len(numbers); i++ {
-                fmt.Printf("numbers[%d] = %d\n", i, numbers[i])
-        }
+        fmt.Println(s1, len(s1), cap(s1)) /* [0 0 0 0 0] 5 5 */
+        fmt.Println(s2, len(s2), cap(s2)) /* [0 0 0 0 0] 5 8 */
 
-        numbers = append(numbers, 1)
+        /* append */
+        sa1 := append(s1, 1, 2, 3, 4)
+        sa2 := append(s2, 1, 2, 3, 4)
 
-        fmt.Printf("cap=%d, slice=%v\n", cap(numbers), numbers)  /* the capacity of the slice */
+        fmt.Println(sa1, len(sa1), cap(sa1)) /* [0 0 0 0 0 1 2 3 4] 9 10 */
+        fmt.Println(sa2, len(sa2), cap(sa2)) /* [0 0 0 0 0 1 2 3 4] 9 16 */
+
+        /* copy */
+        sc1 := []int{1, 2, 3}
+        sc2 := make([]int, 2)
+
+        copy(sc2, sc1) /* copy(dst, src) */
+
+        fmt.Println(sc1, sc2) /* [1 2 3] [1 2] */
 }
 
 /*
  * To define a slice, you can delare it as an array without specifying its
  * size. Alternatively, you can use [make] function to create a slice.
  */
-
 
 /*
  * The [len()] function returns the elements presents in the slice where
