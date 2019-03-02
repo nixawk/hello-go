@@ -2,25 +2,42 @@ package main
 
 import "fmt"
 
-type MyInterface interface {
-        MyFunction() string
+/* Like a struct an interface is created using the type keyword, followed by
+   a name and the keyword interface. But instead of defining fields, we
+   defines a "method set" */
+
+type Inter interface {
+        get_name() string
 }
 
-type MyStruct struct {
-        greeting string
+type Person struct {
+        name string
+        age  int
 }
 
-func(mystruct MyStruct) MyFunction() string {
-        return mystruct.greeting
+type Fruit struct {
+        name string
+        loc  string
 }
 
-func PrintGreeting(myinteface MyInterface) {
-        fmt.Println(myinteface.MyFunction())
+func (p Person) get_name() string {
+        return p.name
+}
+
+func (f Fruit) get_name() string {
+        return f.name
+}
+
+func print_name(i Inter) {
+        fmt.Printf("my name is %s\n", i.get_name())
 }
 
 func main() {
-        var ms = MyStruct{greeting: "Hello, GoLang"}
-        PrintGreeting(ms)
+        p := Person{name: "mutai", age: 25}
+        f := Fruit{name: "peach", loc: "jp"}
+
+        print_name(p)
+        print_name(f)
 }
 
 /*
