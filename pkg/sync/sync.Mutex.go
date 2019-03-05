@@ -1,48 +1,62 @@
+// This sample program demonstrates how to use a mutex to define critical
+// sections of code that need synchronous access.
 package main
 
-import "fmt"
-import "sync"
-import "time"
+import (
+	"fmt"
+	"runtime"
+	"sync"
+)
 
-func main() {
-	m := new(sync.Mutex)
+var (
+	// counter is a variable incremented by all goroutines.
+	counter int
 
-	for i := 0; i < 10; i++ {
-		go func(i int) {
-			m.Lock()
-			fmt.Println(i, "start")
-			time.Sleep(time.Second)
-			fmt.Println(i, "end")
-			m.Unlock()
-		}(i)
+	// wg is used to wait for the program to finish.
+	wg sync.WaitGroup
+
+	// mutex is used to define a critical section of code.
+	mutex sync.Mutex
+)
+
+// incCounter increments the package level Counter variable using the Mutex to
+// synchronize and provide safe access
+func incCounter(id int) {
+	// Schedule the call to Done to tell main we are done.
+	defer wg.Done()
+
+	for count := 0; count < 2; count++ {
+		// Only allow one goroutine through this critical section
+		// at a time
+		mutex.Lock()
+		{
+			// Capture the value of counter.
+			value := counter
+
+			// Yield the thread and be placed back in queue.
+			runtime.Gosched()
+
+			// Increment our local value of counter.
+			value++
+
+			// Store the value back into counter.
+			counter = value
+		}
+		mutex.Unlock()
+		// Release the lock and allow any waiting goroutine through.
 	}
-
-	var s string
-	fmt.Scanln(&s)
 }
 
-/*
+// main is the entry point for all Go programs.
+func main() {
+	// Add a counte of two, one for each goroutines.
+	wg.Add(2)
 
-$ go run sync.Mutex.go
-9 start
-9 end
-0 start
-0 end
-1 start
-1 end
-2 start
-2 end
-3 start
-3 end
-4 start
-4 end
-5 start
-5 end
-6 start
-6 end
-7 start
-7 end
-8 start
-8 end
+	// Create two goroutines.
+	go incCounter(1)
+	go incCounter(2)
 
-*/
+	// Wait for the goroutines to finish.
+	wg.Wait()
+	fmt.Printf("Final Counter: %d\n", counter)
+}
