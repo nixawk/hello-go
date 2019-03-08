@@ -1,22 +1,32 @@
 package main
 
-import "io"
-import "fmt"
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
-func hello(res http.ResponseWriter, req *http.Request) {
-	msg := `<doctype html>
+func index(w http.ResponseWriter, r *http.Request) {
+	html := `
         <html>
-                <head><title>Hello World</title></head>
-                <body>Hello World</body>
-        </html>`
-	res.Header().Set("Content-Type", "text/html")
-	io.WriteString(res, msg)
+                <head>
+                        <title>Chat</title>
+                </head>
+                <body>
+                        Let's chat !
+                </body>
+        </html>
+        `
 
+	w.Write([]byte(html))
 }
 
 func main() {
-	fmt.Println("[*] http server is listening on :9999")
-	http.HandleFunc("/hello", hello)
-	http.ListenAndServe(":9000", nil)
+	log.Println("Listening on 0.0.0.0:8080")
+
+	http.HandleFunc("/", index)
+
+	// start the web server
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal("ListenAndServe:", err)
+	}
 }
