@@ -1,30 +1,37 @@
 package main
 
-import "fmt"
-import "time"
+import (
+	"log"
+	"sync"
+)
 
-func send(c chan<- string) {
-	for {
-		c <- "ping"
-	}
-}
+// A WaitGroup waits for a collection of goroutines to finish. The main
+// goroutine calls Add to set the number of goroutines to wait for . Then each
+// of the goroutines runs and calls Done when finished. At the same time, Wait
+// can be used to block until all goroutines have finished.
+var wg sync.WaitGroup
 
-func recv(c <-chan string) {
-	for {
-		msg := <-c
-		fmt.Printf("[recv]: %s\n", msg)
-		time.Sleep(time.Second * 1)
+func readchannel(ch chan int) {
+	for i := range ch {
+		log.Println(i)
 	}
+
+	defer wg.Done()
 }
 
 func main() {
-	var s string
+	ch := make(chan int)
 
-	c := make(chan string)
-	go send(c)
-	go recv(c)
+	wg.Add(1)
 
-	fmt.Scanln(&s)
+	go readchannel(ch)
+
+	for i := 1; i < 10; i++ {
+		ch <- i
+	}
+
+	close(ch)
+	wg.Wait()
 }
 
 /* Channels are the pipes that connect concurrent goroutines.
@@ -33,5 +40,5 @@ func main() {
  *
  * Channel Direction:
  *      Specify a direction on a channel type thus restricting to it either
-*       sending or receiving.
+ *      sending or receiving.
  */
