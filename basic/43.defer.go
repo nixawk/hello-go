@@ -11,6 +11,7 @@ func check_err(e error) {
 
 func defer_foo() {
 	fmt.Println("1st")
+	defer fmt.Println("4th")
 	defer fmt.Println("3rd")
 	fmt.Println("2nd")
 }
@@ -51,6 +52,10 @@ $ go run defer.go
 1st
 2nd
 3rd
+4th
+
+[*] read 32 bytes -> root:x:0:0:root:/root:/bin/bash
+
 AAA
 
 */
