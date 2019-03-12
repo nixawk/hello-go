@@ -11,7 +11,7 @@ func function_name( [parameter list] ) [return_types]
 
 /* Functions are also known as method, sub-routine, or procedure */
 
-func add(x, y int) int {
+func add(x int, y int) int {
 	var z int
 
 	z = x + y
