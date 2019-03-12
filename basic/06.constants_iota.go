@@ -29,3 +29,13 @@ func main() {
 
 /* https://github.com/golang/go/wiki/Iota */
 /* https://www.programming-books.io/essential/go/58a7d48d4d59472a9a7e6fb561771f8d-iota */
+
+/*
+$ go run 06.constants_iota.go
+Low: 0
+Medium: 1
+High: 2
+KB: 1024.000000
+MB: 1048576.000000
+GB: 1073741824.000000
+*/
