@@ -2,45 +2,37 @@ package main
 
 import "fmt"
 
-/* Like a struct an interface is created using the type keyword, followed by
-   a name and the keyword interface. But instead of defining fields, we
-   defines a "method set" */
-
-type Inter interface {
-	get_name() string
+type Singer interface {
+	Sing()
 }
 
-type Person struct {
-	name string
-	age  int
+type Writer interface {
+	Write()
 }
 
-type Fruit struct {
-	name string
-	loc  string
+type Human struct{}
+
+func (h *Human) Sing() {
+	fmt.Println("singing")
 }
 
-func (p Person) get_name() string {
-	return p.name
+func (h *Human) Write() {
+	fmt.Println("writing")
 }
 
-func (f Fruit) get_name() string {
-	return f.name
-}
+type OnlySinger struct{}
 
-func print_name(i Inter) {
-	fmt.Printf("my name is %s\n", i.get_name())
+func (o *OnlySinger) Sing() {
+	fmt.Println("singing")
 }
 
 func main() {
-	p := Person{name: "mutai", age: 25}
-	f := Fruit{name: "peach", loc: "jp"}
+	h := new(Human)
+	h.Sing()
+	h.Write()
 
-	print_name(p)
-	print_name(f)
+	o := new(OnlySinger)
+	o.Sing()
 }
 
-/*
- * Go programming provides another data type called interfaces which represents
- * a set of method signatures.
- */
+/* https://www.programming-books.io/essential/go/23c5afaeaad2401bb967b117a0edb5bb-simple-interface */
