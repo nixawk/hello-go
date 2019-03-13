@@ -6,7 +6,7 @@ import "fmt"
 func create_array() {
 	a := [3]int{0, 1, 2}      // classical way
 	b := [...]int{0, 1, 2, 3} // a less verbose way
-	c := []int{0, 1, 2, 3, 4}
+	c := []int{0, 1, 2, 3, 4} // pre-allocated slice
 
 	fmt.Println(a)
 	fmt.Println(b)
