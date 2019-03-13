@@ -2,39 +2,66 @@ package main
 
 import "fmt"
 
-func pmap(m map[string]string) {
+func create_map() {
+	// Map is an unordered collection of key-value pairs.
+
+	// Maps are reference types, and once defined they have a zero value of
+	// nil. Writes to nil maps will cause a panic and reads will always
+	// return the zero value
+	var m1 map[int]string
+
+	// To initialize a map, use the make function.
+	m2 := make(map[int]string)
+
+	// Set map initial value with curly brackets.
+	m3 := map[int]string{0: "c", 1: "cpp", 2: "golang"}
+
+	fmt.Printf("[create_map] %v, %d\n", m1, len(m1))
+	fmt.Printf("[create_map] %v, %d\n", m2, len(m2))
+	fmt.Printf("[create_map] %v, %d\n", m3, len(m3))
+}
+
+func index_map() {
+	m := make(map[int]string)
+	m[0] = "c"
+	m[1] = "cpp"
+	m[2] = "golang"
+
 	for k, v := range m {
-		fmt.Printf("%s = %s\n", k, v)
+		fmt.Printf("[index_map] %d = %s\n", k, v)
 	}
-	fmt.Println("--------------------------------------")
+}
+
+func len_map() {
+	m := map[int]string{0: "c", 1: "cpp", 2: "golang"}
+	fmt.Printf("[len_map] %d\n", len(m))
+}
+
+func copy_map() {
+	src := map[int]string{0: "c", 1: "cpp", 2: "golang"}
+	dst := make(map[int]string)
+
+	for k, v := range src {
+		dst[k] = v
+	}
+
+	fmt.Printf("[copy_map] src: %v\n", src)
+	fmt.Printf("[copy_map] dst: %v\n", dst)
+}
+
+func del_map() {
+	m := map[int]string{0: "c", 1: "cpp", 2: "golang"}
+	delete(m, 1)
+
+	fmt.Printf("[del_map] %v\n", m)
 }
 
 func main() {
-
-	/* panic: assignment to entry in nil map */
-	/* maps have to be intialized before they can be used */
-	map1 := make(map[string]string)
-
-	map1["k1"] = "v1"
-	map1["k2"] = "v2"
-	map1["k3"] = "v3"
-
-	map2 := map[string]string{
-		"K1": "V1",
-		"K2": "V2",
-		"K3": "V3"}
-
-	/* delete */
-	pmap(map1)
-	delete(map1, "k3")
-	pmap(map1)
-
-	pmap(map2)
-	delete(map2, "K1")
-	pmap(map2)
-
-	fmt.Println(map1["k3"] == "")   /* true */
-	fmt.Println(map2["K1"] == "V1") /* false */
+	create_map()
+	index_map()
+	len_map()
+	copy_map()
+	del_map()
 }
 
-/* var map_var[key_data_type]value_data_type */
+/* https://www.programming-books.io/essential/go/80fb91dd63d445e28010b9f5e261da81-maps */
