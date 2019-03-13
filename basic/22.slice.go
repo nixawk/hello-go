@@ -2,46 +2,60 @@ package main
 
 import "fmt"
 
-func main() {
-
+func create_slice() {
 	/* A slice is a segment of an array.
 	   Like arrays slices are indexable and have a length.
 	   Unlike arrays this length is allowed to change. */
 
-	/* make */
 	s1 := make([]int, 5)    /* 5 is the length of slice */
 	s2 := make([]int, 5, 8) /* 8 is the capacity of the underlying array */
 
-	fmt.Println(s1, len(s1), cap(s1)) /* [0 0 0 0 0] 5 5 */
-	fmt.Println(s2, len(s2), cap(s2)) /* [0 0 0 0 0] 5 8 */
+	fmt.Println(s1)
+	fmt.Println(s2)
+}
 
-	/* append */
-	sa1 := append(s1, 1, 2, 3, 4)
-	sa2 := append(s2, 1, 2, 3, 4)
+func index_slice() {
+	s := []int{0, 1, 2, 3, 4, 5}
+	for i := range s {
+		fmt.Printf("%d ", i)
+	}
+	fmt.Printf("\n")
+}
 
-	fmt.Println(sa1, len(sa1), cap(sa1)) /* [0 0 0 0 0 1 2 3 4] 9 10 */
-	fmt.Println(sa2, len(sa2), cap(sa2)) /* [0 0 0 0 0 1 2 3 4] 9 16 */
+func append_slice() {
+	s := make([]int, 1)
+	fmt.Printf("[B]slice: %v, len: %d, cap: %d\n", s, len(s), cap(s))
 
-	/* copy */
-	sc1 := []int{1, 2, 3}
-	sc2 := make([]int, 2)
+	s = append(s, 1)
+	fmt.Printf("[A]slice: %v, len: %d, cap: %d\n", s, len(s), cap(s))
+}
 
-	copy(sc2, sc1) /* copy(dst, src) */
+func slice_length() {
+	// The [len()] function returns the elements presents in the slice.
+	s := make([]int, 1)
+	fmt.Println(len(s)) /* output: 1 */
+}
 
-	fmt.Println(sc1, sc2) /* [1 2 3] [1 2] */
+func slice_capacity() {
+	// cap() function returns the capacity of the slice.
+	s := make([]int, 1, 5)
+	fmt.Println(cap(s)) /* output: 5 */
+}
+
+func main() {
+	create_slice()
+	index_slice()
+	append_slice()
+	slice_length()
+	slice_capacity()
 }
 
 /*
- * To define a slice, you can delare it as an array without specifying its
- * size. Alternatively, you can use [make] function to create a slice.
- */
-
-/*
- * The [len()] function returns the elements presents in the slice where
- * cap() function returns the capacity of the slice.
- */
-
-/*
+ * Slice is a growable sequence of values of the same type.
+ * Slice has length and capacity.
+ * Capacity represents how many total elements a slice can have. That's the size of underlying array.
+ * Length is the current number of elements in the slice.
+ *
  * If a slice is declared with no inputs, then by default, it is initialized
  * as nil. Its length and capacity are zero.
  */
