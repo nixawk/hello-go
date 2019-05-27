@@ -10,7 +10,11 @@ function being executed.
 The init functions are great for setting up packages, initializing variables, or performing any other bootstrapping you may need prior to the program running. */
 
 func init() {
-	fmt.Println("init function")
+	fmt.Println("init function - 1")
+}
+
+func init() {
+	fmt.Println("init function - 2")
 }
 
 func main() {
